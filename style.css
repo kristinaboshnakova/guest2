@@ -1,0 +1,375 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Saira:wght@100..900&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(166, 80%, 40%);
+  --first-color-alt: hsl(166, 78%, 38%);
+  --title-color: hsl(166, 95%, 15%);
+  --text-color: hsl(166, 12%, 40%);
+  --white-color: hsl(166, 100%, 99%);
+  --dark-color: hsl(166, 95%, 12%);
+  --body-color: hsl(166, 56%, 18%);
+  --body-white-color: hsl(0, 0%, 100%);
+  --body-first-color: hsl(166, 80%, 40%);
+
+  /*========== Font and typography ==========*/
+  --body-font: "Montserrat", serif;
+  --second-font: "Saira", serif;
+  --biggest-font-size: 4.5rem;
+  --big-font-size: 2.5rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1150px) {
+  :root {
+    --biggest-font-size: 9.5rem;
+    --big-font-size: 4rem;
+    --h1-font-size: 2rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+input,
+button,
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+input,
+button {
+  outline: none;
+  border: none;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--second-font);
+  font-weight: var(--font-medium);
+  line-height: 110%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding-block: 5rem 4rem;
+}
+
+.section__title {
+  text-align: center;
+  font-size: var(--big-font-size);
+  font-weight: var(--font-semi-bold);
+  margin-bottom: 2.5rem;
+}
+
+.main {
+  overflow: hidden;
+}
+
+/*=============== HEADER & NAV ===============*/
+.header{
+  position: fixed;
+  width: 100%;
+  top:0;
+  left:0;
+  background-color: var(--body-color);
+  z-index: var(--z-fixed);
+  transition: box-shadow .4s;
+}
+
+.nav{
+  position: relative;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo{
+  color: white;
+  font-family: var(--second-font);
+  font-weight: var(--font-semi-bold);
+  transition: color .4s;
+}
+
+.nav__logo:hover{
+  color: var(--first-color);
+}
+
+.nav__toggle,
+.nav__close{
+  display: flex;
+  color: var(--white-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Navigation for mobile devices */
+@media screen and (max-width:1150px){
+  .nav__menu{
+    position: fixed;
+    top:-120%;
+    left:0;
+    background-color:var(--body-color);
+    width: 100%;
+    padding-block: 4rem;
+    box-shadow: 0 8px 16px hsla(166, 85%, 8%, .3);
+    transition: top .4s;
+  }
+}
+
+.nav__list{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.nav__link{
+  color:var(--white-color);
+  font: var(--font-medium) var(--h1-font-size) var(--second-font);
+  line-height: 110%;
+  transition: color 4s;
+}
+
+.nav__link:hover{
+  color: var(--first-color);
+}
+
+.nav__close{
+  position: absolute;
+  top:1rem;
+  right: 1.5rem;
+}
+
+/* Show menu */
+.show-menu{
+  top:0;
+}
+
+.shadow-header{
+  box-shadow: 0 4px 16px hsla(166, 85%,8%, .3);
+}
+
+
+/*=============== DESKTOP NAV ===============*/
+@media screen and (min-width:1150px){
+  /* менюто си седи нормално в навбара */
+  .nav__menu{
+    position: static;
+    width: auto;
+    padding-block: 0;
+    box-shadow: none;
+  }
+
+  /* линковете да са в ред, не колона */
+  .nav__list{
+    flex-direction: row;
+    column-gap: 3rem;
+    align-items: center;
+  }
+
+  /* скриваме иконките за отваряне/затваряне на голям екран */
+  .nav__toggle,
+  .nav__close{
+    display: none;
+  }
+}
+
+/* HOME*/
+
+.home__container{
+  position: relative;
+  padding-top: 3rem;
+  row-gap:0;
+}
+
+.home__title{
+  color:var(--white-color);
+  font-size: var(--biggest-font-size);
+  font-weight: var(--font-semi-bold);
+  text-align: center;
+}
+
+.home__images{
+  position: relative;
+  display: grid;
+  justify-items: center;
+  justify-self: center;
+}
+
+
+.home__shape{
+  width: 280px;
+  height: 280px;
+  /*background-color: var(--title-color);*/
+  border-radius: 50%;
+  clip-path: inset(50% 0 0 0 );
+}
+
+
+.home__images img{
+position: absolute;
+
+}
+
+.home__coffe{
+  width: 100px;
+  /* top: -3rem; */
+  right: -1rem;
+  rotate: -9.8deg;
+  border-radius: 35%;
+}
+
+
+.home__splash{
+    max-width: initial;
+    width: 215px;
+    rotate: 360deg;
+    /* left: -3rem; */
+    bottom: 0.5rem;
+
+}
+
+.home__bean-1,
+.home__bean-2{
+  width: 80px;
+
+}
+
+
+
+.home__bean-1{
+  left: 1.5rem;
+  top:1.5rem;
+  filter:blur(1.5px);
+}
+/*
+.home__bean-2{
+  right: 3.5rem;
+  bottom: 6.5rem;
+  rotate: -90deg;
+  filter: blur(2px);
+}
+*/
+
+
+.home__ice-1{
+  
+    /* left: 1.5rem; */
+    /* bottom: 3rem;*/
+
+    width: 160px;
+    /* left: 1.5rem; */
+    bottom: -0.01rem;
+    border-radius: 30%;
+    rotate: -8deg;
+}
+
+.home__ice-2{
+    width: 120px;
+    bottom: -0.5rem;
+    right: -1rem;
+    /* rotate: 60deg;*/
+}
+.home__leaf{
+    width: 280px;
+    border-radius: 10%;
+    /* right: 6rem; */
+    bottom: -1rem;
+    /* rotate: -15deg;*/
+    rotate: -8deg;
+}
+
+.home__sticker{
+  position: absolute;
+  width: 5rem;
+  right: .5rem;
+  top: 29rem;
+  rotate: 15deg;
+}
+
+.home__data{
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.home-description{
+  color: var(--white-color);
+  margin-bottom: 1.5rem;
+}
+
+.button{
+  display: inline-flex;
+  justify-content: center;
+  background-color: var(--first-color);
+  color: var(--white-color);
+  padding: 1rem 2rem;
+  font-weight: var(--font-semi-bold);
+  transition: background .4s, box-shadow .4s;
+}
+
+.button:hover{
+  background-color: var(--first-color);
+  box-shadow: 0 8px 24px hsla (166, 85%, 8%, .2 )
+}
